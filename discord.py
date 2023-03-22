@@ -1,8 +1,9 @@
+import os
 import duckdb 
 import json
 import requests
 
-DISCORD_WEBHOOK_URL = None
+DISCORD_WEBHOOK_URL = os.environ.get('DISCORD_WEBHOOK_URL')
 STACK_OVERFLOW_API_URL = 'https://api.stackexchange.com/2.3/questions'
 
 def post_to_discord(title, url, profile_image):
