@@ -22,5 +22,5 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          pip install duckdb
+          pip install duckdb requests
           python discord.py
