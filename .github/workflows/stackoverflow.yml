@@ -1,6 +1,7 @@
 name: Discord StackOverflow bot Webhook
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "*/10 * * * *"
 
