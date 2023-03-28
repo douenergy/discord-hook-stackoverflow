@@ -12,7 +12,6 @@ def post_to_discord(title, url, profile_image):
         "embeds": [
             {
                 "title": title,
-                "content": "this is a question",
                 "color": 16023588,
                 "thumbnail": {"url": profile_image},
                 "description": url
@@ -51,10 +50,13 @@ if __name__ == '__main__':
             FROM SO 
             WHERE create_time > NOW() - INTERVAL 7 DAY
             LIMIT 5
-        ''').fetchall()
+        ''')
 
-        for q in new_duckdb_questions:
-            post_to_discord(q[0], q[1], q[2])
+        new_duckdb_questions.project('title, create_time').show()
+
+        for title, link, image, _ in new_duckdb_questions.fetchall():
+            post_to_discord(title, link, image)
+
     else:
         print(f'Request failed with status code {response.status_code}')
 
